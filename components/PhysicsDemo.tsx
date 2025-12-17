@@ -36,13 +36,13 @@ const PhysicsDemo: React.FC = () => {
         <div className="relative w-full max-w-md">
             
             {/* Atmosphere */}
-            <div className="absolute left-10 text-center animate-bounce duration-[2000ms]">
+            <div className="absolute left-8 text-center animate-bounce duration-[2000ms]">
                 <Icon name="CloudRain" className="text-blue-500 dark:text-blue-400 mx-auto" size={32} />
                 <span className="text-xs text-blue-600 dark:text-blue-300 font-bold">Precip (P)</span>
                 <div className="h-8 w-0.5 bg-blue-400/50 mx-auto mt-1"></div>
             </div>
 
-            <div className="absolute right-10 text-center animate-pulse">
+            <div className="absolute -top-2 right-12 text-center animate-pulse">
                 <Icon name="Sun" className="text-yellow-500 dark:text-yellow-400 mx-auto" size={32} />
                 <span className="text-xs text-yellow-600 dark:text-yellow-300 font-bold">ET</span>
                  <div className="h-8 w-0.5 bg-yellow-400/50 mx-auto mt-1"></div>
