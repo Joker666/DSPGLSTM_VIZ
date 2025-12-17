@@ -86,62 +86,88 @@ const ComponentVisual: React.FC<ComponentVisualProps> = ({ type }) => {
       );
     case ModelComponentType.ATTENTION:
       return (
-        <div className="h-40 w-full bg-slate-100 dark:bg-slate-900/50 rounded-lg border border-slate-300 dark:border-slate-700 flex items-center justify-center relative transition-colors overflow-hidden">
+        <div className="h-48 w-full bg-slate-100 dark:bg-slate-900/50 rounded-lg border border-slate-300 dark:border-slate-700 flex items-center justify-center relative transition-colors overflow-hidden">
            
-           <div className="relative w-64 h-full flex items-center justify-between z-10">
-               {/* Streams (Left) */}
-               <div className="flex flex-col gap-6">
-                  <div className="flex items-center gap-2">
-                     <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_5px_rgba(16,185,129,0.5)]"></div>
-                     <span className="text-[9px] text-slate-500 dark:text-slate-400 font-mono">Shallow</span>
+           <div className="relative w-[300px] h-full">
+               
+               {/* SVG Layer */}
+               <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
+                  <defs>
+                     <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#94a3b8" stopOpacity="0.2" />
+                        <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.6" />
+                     </linearGradient>
+                     <marker id="arrowhead" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                        <polygon points="0 0, 7 3.5, 0 7" fill="#64748b" />
+                     </marker>
+                  </defs>
+                  
+                  {/* Paths from dots (x=44) to circle left (x=130) */}
+                  
+                  {/* Shallow (y=44) to Center (y=80) */}
+                  <path d="M 44 44 C 80 44, 80 80, 130 80" fill="none" stroke="url(#flowGrad)" strokeWidth="1.5" />
+                  
+                  {/* Mid (y=80) to Center (y=80) */}
+                  <path d="M 44 80 L 130 80" fill="none" stroke="url(#flowGrad)" strokeWidth="1.5" />
+                  
+                  {/* Deep (y=116) to Center (y=80) */}
+                  <path d="M 44 116 C 80 116, 80 80, 130 80" fill="none" stroke="url(#flowGrad)" strokeWidth="1.5" />
+                  
+                  {/* Output from circle right (x=170) to context box (x=210) */}
+                  <line x1="170" y1="80" x2="210" y2="80" stroke="#64748b" strokeWidth="1.5" strokeDasharray="3 3" markerEnd="url(#arrowhead)" />
+               </svg>
+
+               {/* Elements Layer - Positioned to match SVG coordinates */}
+               {/* Dot Centers are at X=44. Y=44, 80, 116 */}
+
+               {/* Shallow Node */}
+               <div className="absolute top-[34px] left-[34px] flex items-center gap-2 z-10">
+                  <div className="w-5 h-5 rounded-full bg-white dark:bg-slate-800 border-2 border-emerald-500 flex items-center justify-center shadow-sm">
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
                   </div>
-                  <div className="flex items-center gap-2">
-                     <div className="w-2 h-2 rounded-full bg-teal-500 shadow-[0_0_5px_rgba(20,184,166,0.5)]"></div>
-                     <span className="text-[9px] text-slate-500 dark:text-slate-400 font-mono">Mid</span>
+                  <span className="text-[9px] text-slate-500 dark:text-slate-400 font-mono font-bold">Shallow</span>
+               </div>
+               
+               {/* Mid Node */}
+               <div className="absolute top-[70px] left-[34px] flex items-center gap-2 z-10">
+                  <div className="w-5 h-5 rounded-full bg-white dark:bg-slate-800 border-2 border-teal-500 flex items-center justify-center shadow-sm">
+                      <div className="w-2 h-2 bg-teal-500 rounded-full"></div>
                   </div>
-                  <div className="flex items-center gap-2">
-                     <div className="w-2 h-2 rounded-full bg-stone-500 shadow-[0_0_5px_rgba(120,113,108,0.5)]"></div>
-                     <span className="text-[9px] text-slate-500 dark:text-slate-400 font-mono">Deep</span>
+                  <span className="text-[9px] text-slate-500 dark:text-slate-400 font-mono font-bold">Mid</span>
+               </div>
+
+               {/* Deep Node */}
+               <div className="absolute top-[106px] left-[34px] flex items-center gap-2 z-10">
+                  <div className="w-5 h-5 rounded-full bg-white dark:bg-slate-800 border-2 border-stone-500 flex items-center justify-center shadow-sm">
+                      <div className="w-2 h-2 bg-stone-500 rounded-full"></div>
+                  </div>
+                  <span className="text-[9px] text-slate-500 dark:text-slate-400 font-mono font-bold">Deep</span>
+               </div>
+
+               {/* Attention Center Node (Center X=150, Y=80) */}
+               {/* Circle width 40px (w-10). Radius 20. Left edge 130. Right edge 170. */}
+               <div className="absolute top-[78px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center z-20">
+                  <div className="w-10 h-10 rounded-full border-2 border-amber-400 bg-amber-50 dark:bg-amber-900/40 flex items-center justify-center shadow-md animate-pulse">
+                      <Activity size={18} className="text-amber-500" />
+                  </div>
+                  <div className="absolute -bottom-4 text-[8px] text-amber-600 dark:text-amber-400 font-bold uppercase tracking-widest bg-white/90 dark:bg-slate-900/90 px-1.5 py-0.5 rounded border border-amber-200 dark:border-amber-900/50 shadow-sm">
+                      Attention
                   </div>
                </div>
 
-               {/* Attention Mechanism (Center) */}
-               <div className="flex flex-col items-center justify-center">
-                  <div className="w-10 h-10 rounded-full border border-amber-400 bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center relative animate-pulse z-20">
-                      <Activity size={14} className="text-amber-500" />
+               {/* Output Node (X start ~210) */}
+               <div className="absolute top-[78px] right-[10px] transform -translate-y-1/2 z-20">
+                  <div className="flex flex-col items-center justify-center bg-white dark:bg-slate-800 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 shadow-md">
+                        <span className="text-[8px] text-slate-400 font-bold uppercase mb-1 tracking-wider">Context</span>
+                        <div className="flex gap-1">
+                            <div className="w-1.5 h-4 bg-emerald-500/80 rounded-sm"></div>
+                            <div className="w-1.5 h-4 bg-teal-500/80 rounded-sm"></div>
+                            <div className="w-1.5 h-4 bg-stone-500/80 rounded-sm"></div>
+                        </div>
                   </div>
-                  <div className="text-[7px] mt-1 text-amber-600 dark:text-amber-400 font-bold uppercase tracking-widest bg-slate-50 dark:bg-slate-900 px-1 rounded">Attention</div>
                </div>
 
-               {/* Context (Right) */}
-               <div className="flex flex-col items-center justify-center bg-white dark:bg-slate-800 px-3 py-2 rounded border border-slate-200 dark:border-slate-600 shadow-sm z-20">
-                   <span className="text-[8px] text-slate-500 dark:text-slate-400 font-bold uppercase mb-1">Context</span>
-                   <div className="flex gap-0.5">
-                       <div className="w-2 h-4 bg-emerald-500/80 rounded-sm"></div>
-                       <div className="w-2 h-4 bg-teal-500/80 rounded-sm"></div>
-                       <div className="w-2 h-4 bg-stone-500/80 rounded-sm"></div>
-                   </div>
-               </div>
            </div>
-
-           {/* Flow Lines SVG - Positioned absolutely but coords matched to the fixed w-64 container logic approximately */}
-           <svg className="absolute inset-0 w-full h-full pointer-events-none">
-              <defs>
-                 <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#94a3b8" stopOpacity="0.2" />
-                    <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.6" />
-                 </linearGradient>
-              </defs>
-              {/* Paths approximating the flex positions. Assuming w-64 centered: Left ~20%, Center ~50%, Right ~80% */}
-              {/* Left nodes at Y ~ 20%, 50%, 80% */}
-              <path d="M 80 45 C 120 45, 120 80, 150 80" fill="none" stroke="url(#flowGrad)" strokeWidth="1" />
-              <path d="M 80 80 C 120 80, 120 80, 150 80" fill="none" stroke="url(#flowGrad)" strokeWidth="1" />
-              <path d="M 80 115 C 120 115, 120 80, 150 80" fill="none" stroke="url(#flowGrad)" strokeWidth="1" />
-              
-              {/* Output */}
-              <line x1="190" y1="80" x2="210" y2="80" stroke="#64748b" strokeWidth="1" strokeDasharray="2 2" />
-           </svg>
-
         </div>
       );
     case ModelComponentType.DECODER:
