@@ -1,0 +1,5 @@
+{
+  "name": "Soil Moisture Forecast - Thesis Defense",
+  "description": "Interactive presentation of the Triple-Stream BiLSTM model with Physics Regularization for Soil Moisture Forecasting.",
+  "requestFramePermissions": []
+}
