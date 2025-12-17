@@ -31,25 +31,25 @@ const PhysicsDemo: React.FC = () => {
         </ul>
       </div>
 
-      <div className="relative h-64 bg-gradient-to-b from-sky-100/50 to-stone-100/50 dark:from-sky-900/20 dark:to-stone-900/20 rounded-xl border border-slate-300 dark:border-slate-700 p-6 flex items-center justify-center">
+      <div className="relative h-96 bg-gradient-to-b from-sky-100/50 to-stone-100/50 dark:from-sky-900/20 dark:to-stone-900/20 rounded-xl border border-slate-300 dark:border-slate-700 p-6 flex items-center justify-center">
         {/* Visual Diagram of Water Balance */}
         <div className="relative w-full max-w-md">
             
             {/* Atmosphere */}
-            <div className="absolute -top-10 left-10 text-center animate-bounce duration-[2000ms]">
+            <div className="absolute left-10 text-center animate-bounce duration-[2000ms]">
                 <Icon name="CloudRain" className="text-blue-500 dark:text-blue-400 mx-auto" size={32} />
                 <span className="text-xs text-blue-600 dark:text-blue-300 font-bold">Precip (P)</span>
                 <div className="h-8 w-0.5 bg-blue-400/50 mx-auto mt-1"></div>
             </div>
 
-            <div className="absolute -top-10 right-10 text-center animate-pulse">
+            <div className="absolute right-10 text-center animate-pulse">
                 <Icon name="Sun" className="text-yellow-500 dark:text-yellow-400 mx-auto" size={32} />
                 <span className="text-xs text-yellow-600 dark:text-yellow-300 font-bold">ET</span>
                  <div className="h-8 w-0.5 bg-yellow-400/50 mx-auto mt-1"></div>
             </div>
 
             {/* Soil Box */}
-            <div className="mt-10 border-t-4 border-emerald-600/50 bg-stone-200 dark:bg-stone-800/80 p-8 rounded-b-lg relative">
+            <div className="mt-20 border-t-4 border-emerald-600/50 bg-stone-200 dark:bg-stone-800/80 p-8 rounded-b-lg relative">
                 <div className="absolute top-2 left-1/2 transform -translate-x-1/2 text-emerald-700 dark:text-emerald-400 font-bold">
                     Δ Soil Moisture
                 </div>
