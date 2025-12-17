@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layers, Zap, Scale, Brain, ArrowRight, Activity, CloudRain, Sun, Thermometer, Wind, Database, GitBranch, TrendingUp, Settings } from 'lucide-react';
+import { Layers, Zap, Scale, Brain, ArrowRight, Activity, CloudRain, Sun, Thermometer, Wind, Database, GitBranch, TrendingUp, Settings, Dna } from 'lucide-react';
 
 interface IconProps {
   name: string;
@@ -22,7 +22,8 @@ export const Icon: React.FC<IconProps> = ({ name, className, size = 24 }) => {
     Database: <Database size={size} className={className} />,
     GitBranch: <GitBranch size={size} className={className} />,
     TrendingUp: <TrendingUp size={size} className={className} />,
-    Settings: <Settings size={size} className={className} />
+    Settings: <Settings size={size} className={className} />,
+    Dna: <Dna size={size} className={className} />
   };
 
   return <>{icons[name] || <Activity size={size} className={className} />}</>;
