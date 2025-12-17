@@ -1,5 +1,6 @@
 import React from 'react';
 import { ModelComponentType } from '../types';
+import { CloudRain, Sun, Wind, ArrowRight, Activity, Layers, ArrowDown } from 'lucide-react';
 
 interface ComponentVisualProps {
   type: ModelComponentType;
@@ -9,19 +10,53 @@ const ComponentVisual: React.FC<ComponentVisualProps> = ({ type }) => {
   switch (type) {
     case ModelComponentType.INPUT:
       return (
-        <div className="h-32 w-full bg-slate-100 dark:bg-slate-900/50 rounded-lg border border-slate-300 dark:border-slate-700 p-4 flex items-center justify-around relative overflow-hidden transition-colors">
-          {/* Schematic: Data sources merging */}
-          <div className="flex flex-col gap-2">
-             <div className="w-16 h-4 bg-slate-300 dark:bg-slate-700 rounded animate-pulse"></div>
-             <div className="w-16 h-4 bg-slate-300 dark:bg-slate-700 rounded animate-pulse delay-75"></div>
-             <div className="w-16 h-4 bg-slate-300 dark:bg-slate-700 rounded animate-pulse delay-150"></div>
+        <div className="h-40 w-full bg-slate-100 dark:bg-slate-900/50 rounded-lg border border-slate-300 dark:border-slate-700 p-4 flex flex-col justify-center relative overflow-hidden transition-colors">
+          <div className="flex justify-between items-center px-4">
+            
+            {/* Drivers Group */}
+            <div className="flex flex-col items-center gap-2 z-10">
+               <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Drivers</div>
+               <div className="flex gap-2">
+                  <div className="w-8 h-8 rounded bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-500 border border-blue-200 dark:border-blue-800">
+                    <CloudRain size={14} />
+                  </div>
+                  <div className="w-8 h-8 rounded bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center text-amber-500 border border-amber-200 dark:border-amber-800">
+                    <Sun size={14} />
+                  </div>
+                  <div className="w-8 h-8 rounded bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-500 border border-slate-300 dark:border-slate-700">
+                    <Wind size={14} />
+                  </div>
+               </div>
+            </div>
+
+            <div className="text-slate-300 dark:text-slate-600">
+               <ArrowRight size={20} />
+            </div>
+
+            {/* Soil Depths Group */}
+            <div className="flex flex-col items-center gap-2 z-10">
+               <div className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Soil Depths</div>
+               <div className="flex flex-col gap-1 w-24">
+                  <div className="h-5 w-full bg-emerald-100 dark:bg-emerald-900/30 border border-emerald-300 dark:border-emerald-700 rounded flex items-center justify-between px-2">
+                    <span className="text-[8px] text-emerald-700 dark:text-emerald-400 font-mono">Shallow</span>
+                    <span className="text-[7px] text-emerald-600/50 dark:text-emerald-500/50">0-5cm</span>
+                  </div>
+                  <div className="h-5 w-full bg-teal-100 dark:bg-teal-900/30 border border-teal-300 dark:border-teal-700 rounded flex items-center justify-between px-2">
+                     <span className="text-[8px] text-teal-700 dark:text-teal-400 font-mono">Mid</span>
+                     <span className="text-[7px] text-teal-600/50 dark:text-teal-500/50">20-50cm</span>
+                  </div>
+                  <div className="h-5 w-full bg-stone-100 dark:bg-stone-800 border border-stone-300 dark:border-stone-600 rounded flex items-center justify-between px-2">
+                     <span className="text-[8px] text-stone-600 dark:text-stone-400 font-mono">Deep</span>
+                     <span className="text-[7px] text-stone-500/50 dark:text-stone-500/50">100cm+</span>
+                  </div>
+               </div>
+            </div>
           </div>
-          <div className="text-slate-400 dark:text-slate-500">→</div>
-          <div className="w-24 h-20 border-2 border-dashed border-cyan-500/50 rounded bg-cyan-100/30 dark:bg-cyan-900/10 flex flex-col items-center justify-center gap-1">
-             <div className="w-16 h-2 bg-cyan-500/50 rounded"></div>
-             <div className="w-16 h-2 bg-emerald-500/50 rounded"></div>
-             <div className="w-16 h-2 bg-stone-500/50 rounded"></div>
-             <span className="text-[9px] text-cyan-600 dark:text-cyan-300 mt-1">Grouped</span>
+          
+          <div className="mt-4 text-center">
+             <div className="inline-block px-3 py-1 rounded-full bg-cyan-50 dark:bg-cyan-900/20 text-[10px] text-cyan-600 dark:text-cyan-400 font-mono border border-cyan-200 dark:border-cyan-800/50">
+               Z-Score Normalized & Time-Windowed
+             </div>
           </div>
         </div>
       );
@@ -51,26 +86,62 @@ const ComponentVisual: React.FC<ComponentVisualProps> = ({ type }) => {
       );
     case ModelComponentType.ATTENTION:
       return (
-        <div className="h-32 w-full bg-slate-100 dark:bg-slate-900/50 rounded-lg border border-slate-300 dark:border-slate-700 p-4 flex items-center justify-center relative transition-colors">
-            {/* Schematic: Nodes connecting */}
-            <svg className="w-full h-full" viewBox="0 0 200 100">
-               <defs>
-                 <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                   <stop offset="0%" style={{stopColor:'rgba(16, 185, 129, 0.2)', stopOpacity:1}} />
-                   <stop offset="100%" style={{stopColor:'rgba(245, 158, 11, 0.5)', stopOpacity:1}} />
+        <div className="h-40 w-full bg-slate-100 dark:bg-slate-900/50 rounded-lg border border-slate-300 dark:border-slate-700 flex items-center justify-center relative transition-colors overflow-hidden">
+           
+           <div className="relative w-64 h-full flex items-center justify-between z-10">
+               {/* Streams (Left) */}
+               <div className="flex flex-col gap-6">
+                  <div className="flex items-center gap-2">
+                     <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_5px_rgba(16,185,129,0.5)]"></div>
+                     <span className="text-[9px] text-slate-500 dark:text-slate-400 font-mono">Shallow</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                     <div className="w-2 h-2 rounded-full bg-teal-500 shadow-[0_0_5px_rgba(20,184,166,0.5)]"></div>
+                     <span className="text-[9px] text-slate-500 dark:text-slate-400 font-mono">Mid</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                     <div className="w-2 h-2 rounded-full bg-stone-500 shadow-[0_0_5px_rgba(120,113,108,0.5)]"></div>
+                     <span className="text-[9px] text-slate-500 dark:text-slate-400 font-mono">Deep</span>
+                  </div>
+               </div>
+
+               {/* Attention Mechanism (Center) */}
+               <div className="flex flex-col items-center justify-center">
+                  <div className="w-10 h-10 rounded-full border border-amber-400 bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center relative animate-pulse z-20">
+                      <Activity size={14} className="text-amber-500" />
+                  </div>
+                  <div className="text-[7px] mt-1 text-amber-600 dark:text-amber-400 font-bold uppercase tracking-widest bg-slate-50 dark:bg-slate-900 px-1 rounded">Attention</div>
+               </div>
+
+               {/* Context (Right) */}
+               <div className="flex flex-col items-center justify-center bg-white dark:bg-slate-800 px-3 py-2 rounded border border-slate-200 dark:border-slate-600 shadow-sm z-20">
+                   <span className="text-[8px] text-slate-500 dark:text-slate-400 font-bold uppercase mb-1">Context</span>
+                   <div className="flex gap-0.5">
+                       <div className="w-2 h-4 bg-emerald-500/80 rounded-sm"></div>
+                       <div className="w-2 h-4 bg-teal-500/80 rounded-sm"></div>
+                       <div className="w-2 h-4 bg-stone-500/80 rounded-sm"></div>
+                   </div>
+               </div>
+           </div>
+
+           {/* Flow Lines SVG - Positioned absolutely but coords matched to the fixed w-64 container logic approximately */}
+           <svg className="absolute inset-0 w-full h-full pointer-events-none">
+              <defs>
+                 <linearGradient id="flowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#94a3b8" stopOpacity="0.2" />
+                    <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.6" />
                  </linearGradient>
-               </defs>
-               <circle cx="40" cy="20" r="5" fill="#10b981" />
-               <circle cx="40" cy="50" r="5" fill="#059669" />
-               <circle cx="40" cy="80" r="5" fill="#57534e" />
+              </defs>
+              {/* Paths approximating the flex positions. Assuming w-64 centered: Left ~20%, Center ~50%, Right ~80% */}
+              {/* Left nodes at Y ~ 20%, 50%, 80% */}
+              <path d="M 80 45 C 120 45, 120 80, 150 80" fill="none" stroke="url(#flowGrad)" strokeWidth="1" />
+              <path d="M 80 80 C 120 80, 120 80, 150 80" fill="none" stroke="url(#flowGrad)" strokeWidth="1" />
+              <path d="M 80 115 C 120 115, 120 80, 150 80" fill="none" stroke="url(#flowGrad)" strokeWidth="1" />
+              
+              {/* Output */}
+              <line x1="190" y1="80" x2="210" y2="80" stroke="#64748b" strokeWidth="1" strokeDasharray="2 2" />
+           </svg>
 
-               <circle cx="160" cy="50" r="15" fill="none" stroke="#f59e0b" strokeWidth="2" />
-               <text x="160" y="54" textAnchor="middle" fontSize="10" fill="#f59e0b" className="font-mono">CTX</text>
-
-               <path d="M 45 20 C 100 20, 100 50, 145 50" stroke="url(#grad1)" strokeWidth="2" fill="none" className="animate-[dash_10s_linear_infinite]" strokeDasharray="5" />
-               <path d="M 45 50 C 100 50, 100 50, 145 50" stroke="url(#grad1)" strokeWidth="2" fill="none" className="animate-[dash_10s_linear_infinite]" strokeDasharray="5" />
-               <path d="M 45 80 C 100 80, 100 50, 145 50" stroke="url(#grad1)" strokeWidth="2" fill="none" className="animate-[dash_10s_linear_infinite]" strokeDasharray="5" />
-            </svg>
         </div>
       );
     case ModelComponentType.DECODER:
@@ -93,32 +164,70 @@ const ComponentVisual: React.FC<ComponentVisualProps> = ({ type }) => {
        );
     case ModelComponentType.PHYSICS:
        return (
-         <div className="h-32 w-full bg-slate-100 dark:bg-slate-900/50 rounded-lg border border-slate-300 dark:border-slate-700 p-4 flex items-center justify-center transition-colors">
-            <div className="relative w-full h-full flex items-center justify-center">
-               <div className="absolute top-2 text-[10px] text-slate-500 dark:text-slate-400 font-mono">ΔSM ≈ P - ET</div>
-               <div className="w-32 h-1 bg-slate-400 dark:bg-slate-600 rounded"></div>
-               <div className="absolute w-4 h-4 bg-rose-500 rounded-full top-1/2 left-1/2 -mt-2 -ml-2 animate-bounce shadow-md"></div>
-               <div className="absolute bottom-4 text-xs text-rose-500 dark:text-rose-400 font-bold">Penalty if Unbalanced</div>
+         <div className="h-40 w-full bg-slate-100 dark:bg-slate-900/50 rounded-lg border border-slate-300 dark:border-slate-700 p-4 flex flex-col items-center justify-center transition-colors">
+            
+            <div className="flex items-center justify-around w-full relative z-10">
+                {/* Inputs */}
+                <div className="flex flex-col gap-2">
+                    <div className="px-2 py-1 bg-blue-50 dark:bg-blue-900/20 rounded border border-blue-200 dark:border-blue-800 text-[9px] text-blue-700 dark:text-blue-300 text-center font-mono">
+                        P - ET
+                    </div>
+                    <div className="px-2 py-1 bg-emerald-50 dark:bg-emerald-900/20 rounded border border-emerald-200 dark:border-emerald-800 text-[9px] text-emerald-700 dark:text-emerald-300 text-center font-mono">
+                        ΔSM
+                    </div>
+                </div>
+
+                {/* Operator */}
+                <div className="text-slate-300 dark:text-slate-600">
+                    <ArrowRight size={16} />
+                </div>
+
+                {/* Residual Box */}
+                <div className="flex flex-col items-center">
+                    <div className="w-16 h-12 bg-rose-50 dark:bg-rose-900/20 rounded border border-rose-200 dark:border-rose-800 flex items-center justify-center relative">
+                        <span className="text-xs font-bold text-rose-500 dark:text-rose-400 font-mono">Diff</span>
+                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-rose-500 rounded-full flex items-center justify-center text-[8px] text-white">2</div>
+                    </div>
+                    <span className="text-[8px] text-slate-400 mt-1 uppercase tracking-wide">Squared</span>
+                </div>
+
+                {/* Operator */}
+                <div className="text-slate-300 dark:text-slate-600">
+                    <ArrowRight size={16} />
+                </div>
+
+                {/* Loss Term */}
+                 <div className="flex flex-col items-center">
+                    <div className="px-3 py-2 bg-slate-800 dark:bg-slate-950 rounded border border-slate-600 dark:border-slate-800 text-white font-mono text-xs shadow-md">
+                        + LOSS
+                    </div>
+                    <span className="text-[8px] text-slate-400 mt-1 uppercase tracking-wide">Regularization</span>
+                </div>
+            </div>
+            
+            <div className="mt-4 w-full h-px bg-slate-200 dark:bg-slate-700"></div>
+            <div className="flex justify-between w-full mt-2">
+                <span className="text-[8px] text-slate-400">Step 1: Water Balance</span>
+                <span className="text-[8px] text-slate-400">Step 2: Penalize Violation</span>
             </div>
          </div>
        );
     case ModelComponentType.OUTPUT:
         return (
-          // Added pt-6 and ensured height logic avoids border collision
           <div className="h-32 w-full bg-slate-100 dark:bg-slate-900/50 rounded-lg border border-slate-300 dark:border-slate-700 p-4 pt-6 flex items-end justify-center gap-4 transition-colors">
               <div className="flex flex-col items-center gap-1">
                  <div className="text-[9px] text-rose-500 dark:text-rose-400 font-medium">High Loss</div>
                  <div className="w-8 bg-rose-100 dark:bg-rose-900/50 border border-rose-500 h-16 relative">
                     <div className="absolute bottom-0 w-full bg-rose-500/50 h-3/4 animate-pulse"></div>
                  </div>
-                 <div className="text-[10px] text-slate-500 dark:text-slate-400">5cm</div>
+                 <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">Shallow</div>
               </div>
               <div className="flex flex-col items-center gap-1">
                  <div className="text-[9px] text-slate-500">Low Loss</div>
                  <div className="w-8 bg-slate-200 dark:bg-slate-800 border border-slate-400 dark:border-slate-600 h-16 relative">
                      <div className="absolute bottom-0 w-full bg-slate-400/50 dark:bg-slate-500/50 h-1/4"></div>
                  </div>
-                 <div className="text-[10px] text-slate-500 dark:text-slate-400">100cm</div>
+                 <div className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">Deep</div>
               </div>
           </div>
         );
